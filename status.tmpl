@@ -1,0 +1,40 @@
+---
+# {{.id}}
+
+Author: #{{.account.acct}}
+{{- if .pinned}}
+Pinned: {{.pinned}}{{end}}
+Date: {{.created_at | tolocal}}
+Source: []({{.url}})
+{{- if .reblog }}{{with .reblog}}
+Reblogged from: @{{.account.acct}}
+  ID: {{.id}}
+  Date: {{.created_at | tolocal}}
+{{- if .in_reply_to_id}}
+  Replying to: {{.in_reply_to_id}}{{end}}
+{{- if .sensitive}}
+Sensitive: true{{end}}
+{{- with .spoiler_text}}
+  Spoiler: {{.}}{{end}}
+  Message: {{.content | fromhtml | wrap "       " 79 | trim}}
+{{- if .description}}
+    Description: {{.description}}{{end}}
+{{- if .text_url}}
+    Text URL: []({{.text_url}}){{else if .url}}
+    URL: []({{.url}}){{else if .remote_url}}
+    Remote URL: []({{.remote_url}}){{end}}
+{{end}}{{else}}
+{{- if .in_reply_to_id}}
+Replying to: [[{{.in_reply_to_id}}{{end}}]]
+{{- if .sensitive}}
+Sensitive: true{{end}}
+{{- with .spoiler_text}}
+Spoiler: {{.}}{{end}}
+Message: {{.content | fromhtml | wrap "     " 79 | trim}}
+{{- range .media_attachments}}
+Attachment ID: {{.id}}
+{{- if .text_url}}
+  Text URL: []({{.text_url}}){{else if .url}}
+  URL: []({{.url}}){{else if .remote_url}}
+  Remote URL: []({{.remote_url}}){{end}}{{end}}
+{{end -}}
