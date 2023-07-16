@@ -20,9 +20,9 @@ Sensitive: true{{end}}
 {{- if .description}}
     Description: {{.description}}{{end}}
 {{- if .text_url}}
-    Text URL: []({{.text_url}}){{else if .url}}
+    URL: []({{.text_url}}){{else if .url}}
     URL: []({{.url}}){{else if .remote_url}}
-    Remote URL: []({{.remote_url}}){{end}}
+    URL: []({{.remote_url}}){{end}}
 {{end}}{{else}}
 {{- if .in_reply_to_id}}
 Replying to: [[{{.in_reply_to_id}}{{end}}]]
@@ -32,9 +32,9 @@ Sensitive: true{{end}}
 Spoiler: {{.}}{{end}}
 Message: {{.content | fromhtml | wrap "     " 79 | trim}}
 {{- range .media_attachments}}
-Attachment ID: {{.id}}
+Attachment ID: ![[{{.id}}]]
 {{- if .text_url}}
-  Text URL: []({{.text_url}}){{else if .url}}
+  URL: []({{.text_url}}){{else if .url}}
   URL: []({{.url}}){{else if .remote_url}}
-  Remote URL: []({{.remote_url}}){{end}}{{end}}
+  URL: []({{.remote_url}}){{end}}{{end}}
 {{end -}}
