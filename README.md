@@ -15,3 +15,15 @@ if you don't use git lfs you will have to commit the attachments to your git rep
 
 else if you have significantly rewritten the script yourself and want to contribute please fork and open up a pull request or post me your script
 contact @ybaumy@digitalcourage.social
+
+
+## export and import tags when moving accounts
+1. install [toot](https://github.com/ihabunek/toot)
+2. login to your old account with ```toot login```
+3. get your tags ```toot tags_followed | awk '{print $2}' > tags```
+4. login to your new account ```toot login```
+5. make sure that your new account is active ```toot auth```
+6. best start a tmux session
+7. then run the script ```./import_tags.sh tags``` to import the tags
+
+**you can try to modify and use other wait times, but i wanted to make sure to import all my ~550 tags i follow without running in the API limit**
